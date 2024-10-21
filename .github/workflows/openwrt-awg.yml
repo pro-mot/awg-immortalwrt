@@ -1,5 +1,5 @@
 name: Create Release Mediatek Filogic
-#on: [push]
+on: [push]
 on:
   push:
     tags:
