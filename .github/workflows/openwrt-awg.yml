@@ -37,7 +37,7 @@ jobs:
 
           wget https://downloads.immortalwrt.org/releases/${{ matrix.tag }}/targets/${target}/${subtarget}/feeds.buildinfo -O feeds.conf
 
-          echo "src-git awgopenwrt https://github.com/lolo6oT/awg-openwrt.git" >> ./feeds.conf
+          echo "src-git awgopenwrt https://github.com/Shelestinskyi/awg-immortalwrt.git" >> ./feeds.conf
 
           ./scripts/feeds update -a
           ./scripts/feeds install -a
