@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: "v${{ github.ref_name }} - ${{ matrix.build_env.pkgarch }} :: ${{ matrix.build_env.target }}/${{ matrix.build_env.subtarget }} build"
-    runs-on: DESKTOP-7AD73DV  # Измените на доступный образ
+    runs-on: self-hosted  # Измените на доступный образ
     strategy:
       matrix:
         build_env:
