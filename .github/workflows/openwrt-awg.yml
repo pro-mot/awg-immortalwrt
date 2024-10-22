@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - "test2"
+      - "v1"
 
 jobs:
   build:
@@ -24,20 +24,9 @@ jobs:
           ref: v${{ matrix.tag }}
           fetch-depth: 0
           
-      - name: Create and Push Unique Tag
-        id: create_tag
+      - name: Create and Push Tag
         run: |
-          base_tag="v23.05.4"  # Базовый тег
-          tag_name=$base_tag
-          counter=1
-
-          # Генерируем уникальный тег, добавляя номер к базе
-          while git rev-parse "$tag_name" >/dev/null 2>&1; do
-            tag_name="${base_tag}-${counter}"
-            counter=$((counter + 1))
-          done
-
-          echo "Creating tag: $tag_name"
+          tag_name="v1"  # Создаем тег v1
           git tag $tag_name
           git push origin $tag_name
 
@@ -106,7 +95,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: awgrelease/*.ipk
-          tag: ${{ steps.create_tag.outputs.tag_name }}
+          tag: v1
 
       - name: Cleanup
         run: |
