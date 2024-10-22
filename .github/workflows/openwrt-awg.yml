@@ -1,10 +1,10 @@
 name: Create Release Mediatek Filogic
 
 on:
-  workflow_dispatch:  # Добавляет возможность вручного запуска
+  workflow_dispatch:
   push:
     tags:
-      - "v0.0.1"
+      - "test2"
 
 jobs:
   build:
@@ -23,6 +23,13 @@ jobs:
           repository: immortalwrt/immortalwrt
           ref: v${{ matrix.tag }}
           fetch-depth: 0
+          
+      - name: Create and Push Tag
+        id: create_tag
+        run: |
+          tag_name="v${{ matrix.tag }}"
+          git tag $tag_name
+          git push origin $tag_name
 
       - name: Update and install feeds for ImmortalWRT_v${{ matrix.tag }} ${{ matrix.build_env.target}}/${{ matrix.build_env.subtarget}}
         run: |
@@ -89,6 +96,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: awgrelease/*.ipk
+          tag: ${{ steps.create_tag.outputs.tag_name }}
 
       - name: Cleanup
         run: |
