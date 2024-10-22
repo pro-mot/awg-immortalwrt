@@ -24,10 +24,20 @@ jobs:
           ref: v${{ matrix.tag }}
           fetch-depth: 0
           
-      - name: Create and Push Tag
+      - name: Create and Push Unique Tag
         id: create_tag
         run: |
-          tag_name="v${{ matrix.tag }}"
+          base_tag="v23.05.4"  # Базовый тег
+          tag_name=$base_tag
+          counter=1
+
+          # Генерируем уникальный тег, добавляя номер к базе
+          while git rev-parse "$tag_name" >/dev/null 2>&1; do
+            tag_name="${base_tag}-${counter}"
+            counter=$((counter + 1))
+          done
+
+          echo "Creating tag: $tag_name"
           git tag $tag_name
           git push origin $tag_name
 
