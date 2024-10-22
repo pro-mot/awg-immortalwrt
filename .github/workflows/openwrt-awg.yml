@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: "v${{ matrix.tag }} - ${{ matrix.build_env.pkgarch }} :: ${{ matrix.build_env.target}}/${{ matrix.build_env.subtarget}} build"
-    runs-on: self-hosted
+    runs-on: windows-latest
     strategy:
       matrix:
         tag: ['23.05.4']
