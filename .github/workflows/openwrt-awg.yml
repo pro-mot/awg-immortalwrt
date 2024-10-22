@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Добавляет возможность вручного запуска
   push:
     tags:
-      - "test1"
+      - "v1"
 
 jobs:
   build:
