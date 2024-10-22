@@ -7,7 +7,7 @@
 			"path": "amneziawg/status"
 		},
 		"depends": {
-			"acl": [ "luci-proto-amneziawg" ],
+			"acl": [ "luci-app-amneziawg" ],
 			"uci": { "network": true }
 		}
 	}
