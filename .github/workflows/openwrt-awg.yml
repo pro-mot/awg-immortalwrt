@@ -51,7 +51,7 @@ jobs:
           export FORCE_UNSAFE_CONFIGURE=1
           echo "CONFIG_PACKAGE_kmod-amneziawg=m" >> .config
           echo "CONFIG_PACKAGE_amneziawg-tools=y" >> .config
-          echo "CONFIG_PACKAGE_luci-proto-amneziawg=y" >> .config
+          echo "CONFIG_PACKAGE_luci-app-amneziawg=y" >> .config
           echo "CONFIG_PACKAGE_amneziawg-go=y" >> .config
 
           if [[ $(uname -m) == "aarch64" ]]; then
@@ -73,7 +73,7 @@ jobs:
           make -j $(nproc) package/amneziawg-tools/{clean,download,prepare,compile}
           make -j $(nproc) package/amneziawg-go/{clean,download,prepare,compile}
           make -j $(nproc) package/kmod-amneziawg/{clean,download,prepare,compile}
-          make -j $(nproc) package/luci-proto-amneziawg/{clean,download,prepare,compile}
+          make -j $(nproc) package/luci-app-amneziawg/{clean,download,prepare,compile}
 
       - name: Prepare artifacts ImmortalWRT_v${{ matrix.tag }} ${{ matrix.build_env.target}}/${{ matrix.build_env.subtarget}}
         run: |
@@ -82,7 +82,7 @@ jobs:
           postfix="${tag_name}_v${{ matrix.tag }}_${{ matrix.build_env.pkgarch }}_${{ matrix.build_env.target }}_${{ matrix.build_env.subtarget }}"
           cp bin/packages/${{ matrix.build_env.pkgarch }}/awgopenwrt/amneziawg-tools_*.ipk awgrelease/amneziawg-tools_${postfix}.ipk
           cp bin/packages/${{ matrix.build_env.pkgarch }}/awgopenwrt/amneziawg-go_*.ipk awgrelease/amneziawg-go_${postfix}.ipk
-          cp bin/packages/${{ matrix.build_env.pkgarch }}/awgopenwrt/luci-proto-amneziawg_*.ipk awgrelease/luci-proto-amneziawg_${postfix}.ipk
+          cp bin/packages/${{ matrix.build_env.pkgarch }}/awgopenwrt/luci-app-amneziawg_*.ipk awgrelease/luci-app-amneziawg_${postfix}.ipk
           cp bin/targets/${{ matrix.build_env.target }}/${{ matrix.build_env.subtarget }}/packages/kmod-amneziawg_*.ipk awgrelease/kmod-amneziawg_${postfix}.ipk
 
       - name: Release
