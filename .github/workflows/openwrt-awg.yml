@@ -14,9 +14,9 @@ jobs:
       matrix:
         tag: ['23.05.4']
         build_env:
-          - pkgarch: aarch64_cortex-a53
-            target: mediatek
-            subtarget: filogic
+          - pkgarch: mipsel_24kc
+            target: ramips
+            subtarget: mt7621
     steps:
       - uses: actions/checkout@v4
         with:
